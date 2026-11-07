@@ -27,7 +27,7 @@ TIMEOUT_SECONDS = 15
 # behaviour doesn't change shape if the universe grows.
 CHUNK = 250
 
-USER_AGENT = "polymarket-movers/1.0 (+https://github.com/dangquangle1/quang)"
+USER_AGENT = "polymarket-movers/1.0 (+https://github.com/dangquangle1/polymarket-movers)"
 
 
 @dataclass(frozen=True)

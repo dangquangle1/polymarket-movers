@@ -41,7 +41,7 @@ RETRIES = 2
 # Gamma sits behind Cloudflare, which 403s urllib's default
 # "Python-urllib/3.x" User-Agent. Identifying ourselves properly is required,
 # not cosmetic - without this every request fails.
-USER_AGENT = "polymarket-movers/1.0 (+https://github.com/dangquangle1/quang)"
+USER_AGENT = "polymarket-movers/1.0 (+https://github.com/dangquangle1/polymarket-movers)"
 
 
 def resolve_tag_ids(slugs: Sequence, cfg: Config, required: bool = True) -> List[str]:

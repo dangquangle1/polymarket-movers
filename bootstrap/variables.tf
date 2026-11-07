@@ -13,7 +13,7 @@ variable "github_owner" {
 variable "github_repo" {
   description = "GitHub repository name."
   type        = string
-  default     = "quang"
+  default     = "polymarket-movers"
 }
 
 variable "state_bucket_prefix" {

@@ -1,7 +1,7 @@
 name: _terraform
 
 # Reusable engine: plan on PRs (read-only), gated apply on merge to main
-# (read/write). Called by each project's own workflow with its directory.
+# (read/write). Called by project-polymarket-movers.yml.
 on:
   workflow_call:
     inputs:

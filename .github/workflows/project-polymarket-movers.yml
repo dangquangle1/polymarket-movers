@@ -1,24 +1,21 @@
 name: project-polymarket-movers
 
-# Per-project pipeline: runs only when this project (or the shared modules)
-# change. Copy this file for each new project — change the name, the paths,
-# and working_directory.
-#
-# The README is excluded: it changes nothing Terraform manages, and without the
-# exclusion a docs-only PR runs a full plan and then waits on the production
-# approval gate to apply nothing.
+# Runs only when what Terraform deploys changes. Listing paths (rather than
+# excluding docs) keeps docs-only PRs and bootstrap/ changes from running a full
+# plan and then waiting on the production approval gate to apply nothing.
+# "*.tf" matches the repo root only, so bootstrap/ is not included.
 on:
   pull_request:
     paths:
-      - "projects/polymarket-movers/**"
-      - "!projects/polymarket-movers/README.md"
+      - "*.tf"
+      - "src/**"
       - ".github/workflows/_terraform.yml"
       - ".github/workflows/project-polymarket-movers.yml"
   push:
     branches: [main]
     paths:
-      - "projects/polymarket-movers/**"
-      - "!projects/polymarket-movers/README.md"
+      - "*.tf"
+      - "src/**"
       - ".github/workflows/_terraform.yml"
       - ".github/workflows/project-polymarket-movers.yml"
 
@@ -33,6 +30,6 @@ jobs:
   terraform:
     uses: ./.github/workflows/_terraform.yml
     with:
-      working_directory: projects/polymarket-movers
+      working_directory: .
       environment: production
     secrets: inherit

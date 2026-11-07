@@ -105,26 +105,23 @@ protection** on `main` (require PR + passing checks).
 
 ---
 
-## 4. Point a project at the backend
+## 4. Point the stack at the backend
 
 ```sh
-cd ../projects/polymarket-movers      # a project stack (from bootstrap/)
+cd ..                                 # the repo root (from bootstrap/)
 cp backend.hcl.example backend.hcl    # fill bucket = state_bucket output (gitignored)
 terraform init -backend-config=backend.hcl
 terraform plan
 ```
 
-Each project under `projects/` is its own stack with its own state key — see
-[`../projects/README.md`](../projects/README.md) to add another.
-
 ---
 
 ## 5. Day-to-day
 
-- **Change infra:** branch → edit a project under `projects/` → open a PR. That
-  project's pipeline runs `fmt`/`validate`/`plan` and comments the plan.
+- **Change infra:** branch → edit the root `*.tf` or `src/` → open a PR. The
+  pipeline runs `fmt`/`validate`/`plan` and comments the plan.
 - **Deploy:** merge to `main` → approve the `production` environment → CI applies.
-- **Locally:** `awslogin && AWS_PROFILE=quang-admin terraform -chdir=projects/polymarket-movers plan`.
+- **Locally:** `awslogin && AWS_PROFILE=quang-admin terraform plan` from the repo root.
 
 ## Growing the least-privilege apply role
 
@@ -136,6 +133,6 @@ marker), then re-run the bootstrap `terraform apply`.
 ## Deploying to other regions
 
 The state bucket stays in `us-east-1`; resources can target any region. Set the
-project's `providers.tf` `region`, or add an aliased provider and set
+`providers.tf` `region`, or add an aliased provider and set
 `provider = aws.<alias>` on specific resources. The CI role is global — no change
 needed.
